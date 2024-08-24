@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,6 +23,13 @@ public class PlayerController : MonoBehaviour
     ISelectable _selectable;
     [SerializeField] LayerMask _buttonLayer;
     [SerializeField] float _rayCastDistance;
+
+    [Header("Pick and Drop")]
+    [SerializeField] LayerMask _pickableLayer;
+    [SerializeField] float _pickUpDistance = 5f;
+    [SerializeField] Transform _attachTransform;
+    bool isPicked;
+    IPickable _pickable;
 
 
     [Header("Ground Check")]
@@ -62,6 +70,7 @@ public class PlayerController : MonoBehaviour
         JumpCheck();
         ShootBullet();
         Interact();
+        PickAndDrop();
     }
 
     void GetInput()
@@ -150,4 +159,29 @@ public class PlayerController : MonoBehaviour
             _selectable = null;
         }
     }
+
+    void PickAndDrop()
+    {
+        Ray ray = _cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        if (Physics.Raycast(ray, out _rayCastHit, _pickUpDistance, _pickableLayer))
+        {
+            _pickable = _rayCastHit.transform.GetComponent<IPickable>();
+            if (_pickable != null)
+            {
+                if (Input.GetKeyDown(KeyCode.E) && !isPicked)
+                {
+                    _pickable.onPicked(_attachTransform);
+                    isPicked = true;
+                    return;
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) && isPicked && _pickable != null)
+        {
+            _pickable.onDropped();
+            isPicked = false;
+        }
+    }
 }
+
