@@ -6,42 +6,47 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Player Movement")]
-    [SerializeField] private float _moveSpeed;
-    [SerializeField] private float _sprintMultiplier;
-    [SerializeField] private float _moveMultiplier;
-    [SerializeField] private float _turnSpeed;
-    [SerializeField] private Transform _cameraTransform;
-    [SerializeField] private bool _invertMouse;
-    [SerializeField] private float _jumpVelocity;
-    [SerializeField] private float _gravity = -9.81f;
+    [SerializeField] float _moveSpeed;
+    [SerializeField] float _sprintMultiplier;
+    [SerializeField] float _moveMultiplier;
+    [SerializeField] float _turnSpeed;
+    [SerializeField] Transform _cameraTransform;
+    [SerializeField] bool _invertMouse;
+    [SerializeField] float _jumpVelocity;
+    [SerializeField] float _gravity = -9.81f;
 
 
-
-
+    [Header("Interactable")]
+    Camera _cam;
+    RaycastHit _rayCastHit;
+    ISelectable _selectable;
+    [SerializeField] LayerMask _buttonLayer;
+    [SerializeField] float _rayCastDistance;
 
 
     [Header("Ground Check")]
-    [SerializeField] private Transform _groundCheck;
-    [SerializeField] private LayerMask _groundMask;
-    [SerializeField] private float _groundCheckDistance;
+    [SerializeField] Transform _groundCheck;
+    [SerializeField] LayerMask _groundMask;
+    [SerializeField] float _groundCheckDistance;
 
 
 
     [Header("Shooting")]
-    [SerializeField] private Rigidbody _bulletPrefab;
-    [SerializeField] private float _shootForce;
-    [SerializeField] private Transform _shootPoint;
+    [SerializeField] Rigidbody _bulletPrefab;
+    [SerializeField] float _shootForce;
+    [SerializeField] Transform _shootPoint;
 
 
-    private CharacterController _characterController;
+    CharacterController _characterController;
 
-    private float _horizontal, _vertical;
-    private float _mouseX, _mouseY;
-    private float _camXRotation;
-    private Vector3 _playerVelocity;
-    private bool _isGrounded;
+    float _horizontal, _vertical;
+    float _mouseX, _mouseY;
+    float _camXRotation;
+    Vector3 _playerVelocity;
+    bool _isGrounded;
     void Start()
     {
+        _cam = Camera.main;
         _characterController = GetComponent<CharacterController>();
 
         // Hide and lock cursor
@@ -56,6 +61,7 @@ public class PlayerController : MonoBehaviour
         GroundCheck();
         JumpCheck();
         ShootBullet();
+        Interact();
     }
 
     void GetInput()
@@ -117,6 +123,31 @@ public class PlayerController : MonoBehaviour
 
             bullet.velocity = _cameraTransform.forward * _shootForce;
             Destroy(bullet.gameObject, 5.0f);
+        }
+    }
+
+    void Interact()
+    {
+        Ray ray = _cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        if (Physics.Raycast(ray, out _rayCastHit, _rayCastDistance, _buttonLayer))
+        {
+            _selectable = _rayCastHit.transform.GetComponent<ISelectable>();
+            if (_selectable != null)
+            {
+                _selectable.OnHover();
+                Debug.Log("Hovering over selectable");
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    Debug.Log("E Pressed");
+                    _selectable.OnSelect();
+                }
+            }
+        }
+        if (_rayCastHit.transform == null && _selectable != null)
+        {
+            _selectable.OnHoverExit();
+            _selectable = null;
         }
     }
 }
