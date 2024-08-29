@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovementBehaviour : MonoBehaviour
 {
-    [SerializeField] PlayerInput _input;
+    PlayerInput _input;
 
     [Header("Player Movement")]
     [SerializeField] float _moveSpeed;
@@ -29,7 +29,7 @@ public class PlayerMovementBehaviour : MonoBehaviour
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
-
+        _input = PlayerInput.GetInstance();
     }
 
     // Update is called once per frame

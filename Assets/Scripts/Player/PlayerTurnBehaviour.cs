@@ -5,10 +5,15 @@ using UnityEngine.UIElements;
 
 public class PlayerTurnBehaviour : MonoBehaviour
 {
-    [SerializeField] private PlayerInput _input;
+    PlayerInput _input;
 
     [Header("Player Turn")]
     [SerializeField] float _turnSpeed;
+
+    void Start()
+    {
+        _input = PlayerInput.GetInstance();
+    }
 
     // Update is called once per frame
     void Update()

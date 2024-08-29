@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro.EditorUtilities;
@@ -25,6 +26,29 @@ public class PlayerInput : MonoBehaviour
     public bool secondaryShootPressed { get; private set; }
 
     bool _clear;
+
+    /// <summary>
+    /// Singleton Pattern
+    /// </summary>
+    public static PlayerInput Instance { get; private set; }
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
+    public static PlayerInput GetInstance()
+    {
+        return Instance;
+    }
 
 
 
@@ -60,8 +84,8 @@ public class PlayerInput : MonoBehaviour
     {
         if (!_clear) return;
 
-        horizontal = 0;
-        vertical = 0;
+        horizontal = Mathf.Lerp(horizontal, 0, 0.2f);
+        vertical = Mathf.Lerp(vertical, 0, 0.2f);
         mouseX = 0;
         mouseY = 0;
 

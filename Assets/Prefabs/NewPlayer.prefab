@@ -351,6 +351,8 @@ GameObject:
   - component: {fileID: -622569242874797151}
   - component: {fileID: 8395634526032530347}
   - component: {fileID: 3189292947966849255}
+  - component: {fileID: 6349477893563647929}
+  - component: {fileID: 8062771954134211293}
   m_Layer: 0
   m_Name: NewPlayer
   m_TagString: Player
@@ -526,7 +528,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _input: {fileID: 8024068309006150247}
+  _interactableLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _cam: {fileID: 0}
+  _interactionDistance: 0
   _jumpVelocity: 5
+--- !u!114 &6349477893563647929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4202389021920924822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96381a0afc1225a489fa3c10456e36cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _input: {fileID: 8024068309006150247}
+  _inputType: 0
+  _bulletPrefab: {fileID: 7321905976990990010, guid: a9461dfcd05e6a640ab81bececa00a62,
+    type: 3}
+  _shootVelocity: 30
+  _shootPoint: {fileID: 8596244757147888572}
+  _playerMovementBehaviour: {fileID: -622569242874797151}
+--- !u!114 &8062771954134211293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4202389021920924822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcd93147f3ec86c46ba2f97501018725, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _input: {fileID: 8024068309006150247}
+  _interactableLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  _cam: {fileID: 4213561127736123940}
+  _interactionDistance: 3
 --- !u!1 &4572828013111115656
 GameObject:
   m_ObjectHideFlags: 0

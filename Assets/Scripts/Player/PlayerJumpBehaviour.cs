@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovementBehaviour))]
-public class PlayerJumpBehaviour : SimpleInteractor
+public class PlayerJumpBehaviour : Interactor
 {
 
     [Header("Jump")]
@@ -14,6 +14,7 @@ public class PlayerJumpBehaviour : SimpleInteractor
     void Start()
     {
         _playerMovementBehaviour = GetComponent<PlayerMovementBehaviour>();
+        _input = PlayerInput.GetInstance();
     }
 
     public override void Interact()
