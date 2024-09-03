@@ -18,7 +18,7 @@ public class ObjectPool : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Initialize();
     }
 
     void Initialize()
@@ -66,7 +66,13 @@ public class ObjectPool : MonoBehaviour
 
     public void DestroyPooledObject(PooledObject obj, float time = 0)
     {
-        _objectPool.Remove(obj);
-        Destroy(obj.gameObject);
+        if (time == 0)
+        {
+            obj.Destroy();
+        }
+        else
+        {
+            obj.Destroy(time);
+        }
     }
 }

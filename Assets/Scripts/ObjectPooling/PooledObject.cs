@@ -24,7 +24,14 @@ public class PooledObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (_setToDestroy)
+        {
+            _timer += Time.deltaTime;
+            if (_timer >= _destroyTime)
+            {
+                _associatedPool.RestoreObject(this);
+            }
+        }
     }
     public void ResetObject()
     {
