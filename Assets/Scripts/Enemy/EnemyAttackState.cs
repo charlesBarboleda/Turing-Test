@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyAttackState : EnemyState
 {
     float _distanceToPlayer;
+    Health _playerHealth;
+    float _damagePerSecond = 10f;
     public EnemyAttackState(EnemyController enemy) : base(enemy)
     {
 

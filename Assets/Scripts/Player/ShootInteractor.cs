@@ -4,41 +4,47 @@ using UnityEngine;
 
 public class ShootInteractor : Interactor
 {
-    [SerializeField] Input _inputType;
-    [Header("Shooting")]
-    [SerializeField] ObjectPool _bulletPool;
+    [Header("Gun")]
+    public MeshRenderer _gunRenderer;
+    public Color _bulletGunColour;
+    public Color _rocketGunColour;
+
+
+    [Header("Shoot")]
+    [SerializeField] public ObjectPool bulletPool;
+    [SerializeField] public ObjectPool rocketPool;
+
     [SerializeField] Rigidbody _bulletPrefab;
     [SerializeField] float _shootVelocity;
     [SerializeField] Transform _shootPoint;
     [SerializeField] PlayerMovementBehaviour _playerMovementBehaviour;
 
     float _finalShootVelocty;
-    public enum Input
-    {
-        Primary,
-        Secondary
-    }
+    IShootStrategy _currentShootStrategy;
     public override void Interact()
     {
-        if (_inputType == Input.Primary && _input.primaryShootPressed || _inputType == Input.Secondary && _input.secondaryShootPressed)
-        {
-            Shoot();
-        }
+        // Default shoot strategy
+        if (_currentShootStrategy == null) _currentShootStrategy = new BulletShootStrategy(this);
+
+        // Change strategy
+        if (_input._weapon1Pressed) _currentShootStrategy = new BulletShootStrategy(this);
+
+        if (_input._weapon2Pressed) _currentShootStrategy = new RocketShootStrategy(this);
+
+        // Shoot with the current strategy
+
+        if (_input.primaryShootPressed && _currentShootStrategy != null) _currentShootStrategy.Shoot();
+
+
 
     }
 
-    void Shoot()
+    public Transform GetShootPoint() => _shootPoint;
+    public float GetShootVelocity()
     {
         _finalShootVelocty = _playerMovementBehaviour.GetForwardVelocity() + _shootVelocity;
-
-        PooledObject pooledBullet = _bulletPool.GetPooledObject();
-        pooledBullet.gameObject.SetActive(true);
-
-        Rigidbody bulletRb = pooledBullet.GetComponent<Rigidbody>();
-        bulletRb.transform.position = _shootPoint.position;
-        bulletRb.transform.rotation = _shootPoint.rotation;
-
-        bulletRb.velocity = _shootPoint.forward * _finalShootVelocty;
-        _bulletPool.DestroyPooledObject(pooledBullet, 5.0f);
+        return _finalShootVelocty;
     }
+
+
 }

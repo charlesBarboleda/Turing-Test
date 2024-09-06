@@ -353,6 +353,9 @@ GameObject:
   - component: {fileID: 3189292947966849255}
   - component: {fileID: 6349477893563647929}
   - component: {fileID: 8062771954134211293}
+  - component: {fileID: 3682504447929213514}
+  - component: {fileID: 3773264322404842969}
+  - component: {fileID: 672706133626757734}
   m_Layer: 0
   m_Name: NewPlayer
   m_TagString: Player
@@ -491,7 +494,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7536a2c60481fbd42ad67a2ff1ca6280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _input: {fileID: 8024068309006150247}
   _moveSpeed: 10
   _sprintMultiplier: 2
   _moveMultiplier: 1
@@ -513,7 +515,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74134664c3ab320489d31ae6e98eed30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _input: {fileID: 8024068309006150247}
   _turnSpeed: 100
 --- !u!114 &3189292947966849255
 MonoBehaviour:
@@ -527,12 +528,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ff20cf5204e964aa78a4da4e5c02a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _input: {fileID: 8024068309006150247}
-  _interactableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  _cam: {fileID: 0}
-  _interactionDistance: 0
   _jumpVelocity: 5
 --- !u!114 &6349477893563647929
 MonoBehaviour:
@@ -546,8 +541,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96381a0afc1225a489fa3c10456e36cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _input: {fileID: 8024068309006150247}
-  _inputType: 0
+  _gunRenderer: {fileID: 6244260457405381723}
+  _bulletGunColour: {r: 0, g: 0.19935513, b: 1, a: 1}
+  _rocketGunColour: {r: 1, g: 0, b: 0, a: 1}
+  bulletPool: {fileID: 0}
+  rocketPool: {fileID: 0}
   _bulletPrefab: {fileID: 7321905976990990010, guid: a9461dfcd05e6a640ab81bececa00a62,
     type: 3}
   _shootVelocity: 30
@@ -565,12 +563,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd93147f3ec86c46ba2f97501018725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _input: {fileID: 8024068309006150247}
   _interactableLayer:
     serializedVersion: 2
     m_Bits: 128
   _cam: {fileID: 4213561127736123940}
   _interactionDistance: 3
+--- !u!114 &3682504447929213514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4202389021920924822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899d74bf5d567494287138ebda233d86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectToPool: {fileID: 8983697995164517826, guid: a9461dfcd05e6a640ab81bececa00a62,
+    type: 3}
+  _startSize: 10
+  _objectPool: []
+  _usedPool: []
+--- !u!114 &3773264322404842969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4202389021920924822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899d74bf5d567494287138ebda233d86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectToPool: {fileID: 8983697995164517826, guid: f89896cf9095b8847b724cbc9c3955c1,
+    type: 3}
+  _startSize: 10
+  _objectPool: []
+  _usedPool: []
+--- !u!114 &672706133626757734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4202389021920924822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a14185c654d874aac1cc6667adcd17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
 --- !u!1 &4572828013111115656
 GameObject:
   m_ObjectHideFlags: 0
