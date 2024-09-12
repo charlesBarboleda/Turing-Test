@@ -9,7 +9,7 @@ public class EnemyAttackState : EnemyState
     float _damagePerSecond = 10f;
     public EnemyAttackState(EnemyController enemy) : base(enemy)
     {
-
+        _playerHealth = _enemy._player.GetComponent<Health>();
     }
 
     public override void OnStateEnter()
@@ -19,6 +19,7 @@ public class EnemyAttackState : EnemyState
 
     public override void OnStateUpdate()
     {
+        Attack();
         Debug.Log("Enemy Attack State Update");
         if (_enemy._player != null)
         {
@@ -40,6 +41,14 @@ public class EnemyAttackState : EnemyState
     public override void OnStateExit()
     {
         Debug.Log("Enemy Attack State Exited");
+    }
+
+    void Attack()
+    {
+        if (_playerHealth != null)
+        {
+            _playerHealth.DeductHealth(_damagePerSecond * Time.deltaTime);
+        }
     }
 
 }
