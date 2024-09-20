@@ -25,7 +25,6 @@ public class SimpleInteractor : Interactor
             if (_selectable != null)
             {
                 _selectable.OnHover();
-                Debug.Log("Hovering over selectable");
 
                 if (_input.interactPressed)
                 {

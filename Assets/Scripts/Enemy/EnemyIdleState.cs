@@ -13,12 +13,12 @@ public class EnemyIdleState : EnemyState
     public override void OnStateEnter()
     {
         _enemy._agent.destination = _enemy._targetPoints[_currentTarget].position;
-        Debug.Log("Enemy Idle State Entered");
+
     }
 
     public override void OnStateExit()
     {
-        Debug.Log("Enemy Exiting Idle State");
+
     }
 
     public override void OnStateUpdate()

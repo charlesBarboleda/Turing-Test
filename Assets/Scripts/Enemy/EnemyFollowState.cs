@@ -12,12 +12,12 @@ public class EnemyFollowState : EnemyState
 
     public override void OnStateEnter()
     {
-        Debug.Log("Enemy Follow State Entered");
+
     }
 
     public override void OnStateUpdate()
     {
-        Debug.Log("Enemy Follow State Exited");
+
         if (_enemy._player != null)
         {
             _distanceToPlayer = Vector3.Distance(_enemy.transform.position, _enemy._player.position);
@@ -40,7 +40,7 @@ public class EnemyFollowState : EnemyState
     }
     public override void OnStateExit()
     {
-        Debug.Log("Enemy Follow State Exited");
+
     }
 
 }
