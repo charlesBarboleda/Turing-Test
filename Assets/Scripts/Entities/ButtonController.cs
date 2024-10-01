@@ -30,6 +30,7 @@ public class ButtonController : MonoBehaviour, ISelectable
     }
     public void OnHover()
     {
+        Debug.Log("Hovering over button");
         _renderer.material = _unlockedColor;
     }
 
@@ -45,6 +46,7 @@ public class ButtonController : MonoBehaviour, ISelectable
         {
             Debug.Log("Player has key... opening the door");
             _onPush.Invoke();
+            keyManager.RemoveKey(keyManager.keys[0]);
         }
     }
 
