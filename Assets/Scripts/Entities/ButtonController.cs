@@ -11,6 +11,7 @@ public class ButtonController : MonoBehaviour, ISelectable
     public Animator doorAnim;
     public KeyManager keyManager;
     public UnityEvent _onPush;
+    public int keyIndex;
 
 
 
@@ -30,7 +31,6 @@ public class ButtonController : MonoBehaviour, ISelectable
     }
     public void OnHover()
     {
-        Debug.Log("Hovering over button");
         _renderer.material = _unlockedColor;
     }
 
@@ -42,11 +42,10 @@ public class ButtonController : MonoBehaviour, ISelectable
     public void OnSelect()
     {
         Debug.Log("Button Pressed");
-        if (keyManager.HasKey(keyManager.keys[0]))
+        if (keyManager.HasKey(keyManager.keys[keyIndex]))
         {
             Debug.Log("Player has key... opening the door");
             _onPush.Invoke();
-            keyManager.RemoveKey(keyManager.keys[0]);
         }
     }
 
