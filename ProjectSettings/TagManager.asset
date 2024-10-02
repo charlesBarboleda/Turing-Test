@@ -10,6 +10,7 @@ TagManager:
   - Button
   - Builder
   - ReflectionObject
+  - LaserTarget
   layers:
   - Default
   - TransparentFX

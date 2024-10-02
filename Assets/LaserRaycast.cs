@@ -42,6 +42,11 @@ public class LaserRaycast : MonoBehaviour
                         _player.position = _playerSpawnPoint.position;  // Respawn player
                     }
                 }
+                if (hit.collider.CompareTag("LaserTarget"))
+                {
+                    Debug.Log("Hitting Laser Target");
+                    hit.collider.GetComponent<LaserEventTrigger>().OnLaserHit();
+                }
 
                 // Handle reflecting off PickObject
                 if (hit.collider.CompareTag("ReflectionObject"))
