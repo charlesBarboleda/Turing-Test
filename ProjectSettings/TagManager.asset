@@ -9,6 +9,7 @@ TagManager:
   - MovingPlatform
   - Button
   - Builder
+  - ReflectionObject
   layers:
   - Default
   - TransparentFX

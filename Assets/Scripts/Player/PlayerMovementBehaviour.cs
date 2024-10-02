@@ -19,10 +19,10 @@ public class PlayerMovementBehaviour : MonoBehaviour
     [SerializeField] LayerMask _groundMask;
     [SerializeField] float _groundCheckDistance;
     public bool _isGrounded { get; private set; }
+    public Vector3 _playerVelocity;
 
     CharacterController _characterController;
 
-    Vector3 _playerVelocity;
 
 
     // Start is called before the first frame update

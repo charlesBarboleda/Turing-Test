@@ -155,6 +155,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   _laserStartPoint: {fileID: 8933786723344600671}
+  _player: {fileID: 2917716128754949157, guid: fe533120047cf1e4eaa4063c3d445c40, type: 3}
+  _playerSpawnPoint: {fileID: 8405323217214012774, guid: 4240e56acadfc634cb5e4f6085e187f6,
+    type: 3}
 --- !u!1 &4246797572175121366
 GameObject:
   m_ObjectHideFlags: 0
