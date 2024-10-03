@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] Health _playerHealth;
-    [SerializeField] TextMeshProUGUI _textHealth;
     [SerializeField] GameObject _gameOverText;
     [SerializeField] TextMeshProUGUI _level0ButtonPadText, _level1ButtonPadText;
 
@@ -16,30 +14,6 @@ public class UIManager : MonoBehaviour
         _gameOverText.SetActive(false);
     }
 
-    void OnEnable()
-    {
-        // Subscriptions
-        _playerHealth.OnHealthUpdated += OnHealthUpdate;
-        _playerHealth.OnDeath += OnDeath;
-
-    }
-
-
-    void OnDestroy()
-    {
-        // Unsubscriptions
-        _playerHealth.OnHealthUpdated -= OnHealthUpdate;
-        _playerHealth.OnDeath -= OnDeath;
-    }
-
-    void OnHealthUpdate(float health)
-    {
-        _textHealth.text = Mathf.Floor(health).ToString();
-    }
-    void OnDeath()
-    {
-        _gameOverText.SetActive(true);
-    }
 
     public void UnlockLevel0ButtonPad()
     {
