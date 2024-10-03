@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _sprintMultiplier;
     [SerializeField] float _moveMultiplier;
     [SerializeField] float _turnSpeed;
+    [SerializeField] float _verticalSensitivity = 1f;
     [SerializeField] Transform _cameraTransform;
     [SerializeField] bool _invertMouse;
     [SerializeField] float _jumpVelocity;
@@ -102,11 +103,11 @@ public class PlayerController : MonoBehaviour
 
     void RotatePlayer()
     {
-        // Turning Player
+        // Turning Player (Horizontal)
         transform.Rotate(Vector3.up * _turnSpeed * Time.deltaTime * _mouseX);
 
-        // Camera Up and Down
-        _camXRotation += Time.deltaTime * _mouseY * _turnSpeed * (_invertMouse ? 1 : -1);
+        // Camera Up and Down (Vertical) with new vertical sensitivity
+        _camXRotation += Time.deltaTime * _mouseY * _verticalSensitivity * (_invertMouse ? 1 : -1);
         _camXRotation = Mathf.Clamp(_camXRotation, -85f, 85f);
 
         _cameraTransform.localRotation = Quaternion.Euler(_camXRotation, 0, 0);

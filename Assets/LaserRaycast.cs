@@ -6,7 +6,7 @@ public class LaserRaycast : MonoBehaviour
 {
     RaycastHit hit;
     LineRenderer _lineRenderer;
-    int _numberofReflections = 3;  // Number of reflections allowe
+    int _numberofReflections = 5;  // Number of reflections allowed
     [SerializeField] LayerMask layerMask;
     [SerializeField] Transform _laserStartPoint;
     [SerializeField] Transform _player;

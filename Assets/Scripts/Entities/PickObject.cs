@@ -15,7 +15,6 @@ public class PickObject : MonoBehaviour, IPickable
     public void onPicked(Transform attachTransform)
     {
         transform.position = attachTransform.position;
-        transform.rotation = attachTransform.rotation;
         transform.SetParent(attachTransform);
 
         _rigidbody.isKinematic = true;
