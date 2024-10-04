@@ -7,12 +7,12 @@ public class SimonSaysButton : MonoBehaviour, ISelectable
     [SerializeField] SimonSaysManager _simonSaysManager;
     public void OnHover()
     {
-        // No need for implementation
+        UIManager.Instance.PressEHover();
     }
 
     public void OnHoverExit()
     {
-        // No need for implementation
+        UIManager.Instance.PressEHoverExit();
     }
 
     public void OnSelect()

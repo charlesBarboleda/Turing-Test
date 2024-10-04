@@ -21,11 +21,13 @@ public class NoteBoxController : MonoBehaviour, ISelectable
     }
     public void OnHover()
     {
+        UIManager.Instance.PressEHover();
         _meshRenderer.material = _glowMaterial;
     }
 
     public void OnHoverExit()
     {
+        UIManager.Instance.PressEHoverExit();
         _meshRenderer.material = _defaultMaterial;
     }
 

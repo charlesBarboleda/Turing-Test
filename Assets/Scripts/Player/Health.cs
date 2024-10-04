@@ -7,7 +7,6 @@ public class Health : MonoBehaviour
 {
     [SerializeField] float _maxHealth;
 
-    public Action<float> OnHealthUpdated;
     public Action OnDeath;
 
     public bool isDead { get; private set; }
@@ -16,7 +15,6 @@ public class Health : MonoBehaviour
     void Start()
     {
         _health = _maxHealth;
-        OnHealthUpdated(_maxHealth);
     }
 
     public void DeductHealth(float amount)
@@ -31,6 +29,5 @@ public class Health : MonoBehaviour
             OnDeath();
             _health = 0;
         }
-        OnHealthUpdated(_health);
     }
 }

@@ -22,20 +22,25 @@ public class Cake : MonoBehaviour, ISelectable
     public void OnHover()
     {
         if (isActive)
+        {
             _meshRenderer.material = _hoverMaterial;
+            UIManager.Instance.PressEHover();
+        }
     }
 
     public void OnHoverExit()
     {
         if (isActive)
+        {
             _meshRenderer.material = _originalMaterial;
+            UIManager.Instance.PressEHoverExit();
+        }
     }
 
     public void OnSelect()
     {
         if (isActive)
             OnCakeSelect.Invoke();
-
     }
 
     public void ActivateCake()

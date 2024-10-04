@@ -31,11 +31,13 @@ public class ButtonController : MonoBehaviour, ISelectable
     }
     public void OnHover()
     {
+        UIManager.Instance.PressEHover();
         _renderer.material = _unlockedColor;
     }
 
     public void OnHoverExit()
     {
+        UIManager.Instance.PressEHoverExit();
         _renderer.material = _lockedColor;
     }
 
